@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
   context: path.resolve(__dirname, './'),
@@ -16,7 +17,12 @@ const config = {
     loaders: [
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          //resolve-url-loader may be chained before sass-loader if necessary
+          use: ['css-loader', 'sass-loader']
+        }),
+        // loaders: ['style-loader', 'css-loader', 'sass-loader'],
         exclude: /node_modules/,
       },
       {

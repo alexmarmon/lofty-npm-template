@@ -1,8 +1,2 @@
 node_modules
-npm-debug.log
 .DS_Store
-creds.json
-dist/*
-!dist/index.html
-prod/
-!prod/index.html
