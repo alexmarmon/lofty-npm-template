@@ -1,37 +1,25 @@
 const path = require('path');
-const webpack = require('webpack');
-const Merge = require('webpack-merge');
-const CommonConfig = require('./webpack.common.js');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const config = require('@lofty/lofty-webpack/webpack.prod.js');
 
-const config = Merge(CommonConfig, {
-  entry: {
-    index: ['./src/dist-index']
-  },
+config.entry = {
+  index: ['./src/dist-index']
+};
 
-  externals: {
-    'react': 'commonjs react'
-  },
+config.externals = {
+  'react': 'commonjs react'
+};
 
-  output: {
-    publicPath: '/',
-    filename: '[name].js',
-    path: path.join(__dirname, 'dist'),
-    libraryTarget: 'commonjs2'
-  },
+config.output = {
+  filename: '[name].js',
+  path: path.resolve('./dist'),
+  libraryTarget: 'commonjs2'
+};
 
-  plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    // new BundleAnalyzerPlugin(),
-    new ExtractTextPlugin('style.css'),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    }),
-  ]
-});
+// force all chunks into index.js
+config.plugins.find(x => {
+  if (typeof x.chunkNames === typeof []) {
+    x.chunkNames = ['index'];
+  }
+})
 
 module.exports = config;
