@@ -4,14 +4,14 @@
   "description": "React npm template",
   "author": "Alex Marmon",
   "license": "MIT",
-  "repository": "https://github.com/alexmarmon/react-mobx-template.git",
+  "repository": "https://github.com/alexmarmon/lofty-npm-template",
   "scripts": {
     "prepublishOnly": "npm run build",
     "dev": "node server.js",
     "lint": "eslint --ext .js --ext .jsx src/; exit 0",
     "lint-fix": "eslint --fix --ext .js --ext .jsx src/; exit 0",
     "build": "webpack --config webpack.dist.js --progress --colors --optimize-minimize",
-    "push": "git add .; git commit -m process.env.m; git push; npm version patch; npm publish;"
+    "push": "git add .; git commit -m 'process.env.m'; git push; npm version patch; npm publish;"
   },
   "keywords": [
     "react",
