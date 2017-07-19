@@ -8,16 +8,6 @@ const app = express();
 const port = 3000;
 process.env['PORT'] = port;
 
-// webpack overwrite
-config.entry = {
-  "main": [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    path.resolve('./src/dev-index')
-  ]
-};
-
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,

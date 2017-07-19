@@ -11,9 +11,9 @@ import './shared_styles/base.scss';
 const Routes = (() =>
   <BrowserRouter>
     <div id="app-container">
-      <Route path="/" component={Header} />
-      <Route exact path="/" component={Component1} />
-      <Route path="/component-2" component={Component2} />
+      <Route path="/" component={() => <Header />} />
+      <Route exact path="/" component={() => <Component1 />} />
+      <Route path="/component-2" component={() => <Component2 />} />
     </div>
   </BrowserRouter>
 );

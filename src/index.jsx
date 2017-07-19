@@ -16,5 +16,5 @@ const renderIt = (Component) => {
 renderIt(Routes);
 
 if (module.hot) {
-  module.hot.accept('./routes', () => { renderIt(Routes); });
+  module.hot.accept();
 }
